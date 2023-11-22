@@ -1,9 +1,22 @@
-export default function Home() {
-  return (
-   <div>
+import AnimeList from "./components/AnimeList"
 
-      <h1 className='text-4xl'>web is running </h1>
+const Home = async () => {
+const response = await fetch (`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime`)
+const anime = await response.json()
+ return (
+  <div>
+    <h1 className="">Top Anime</h1>
 
-   </div>
-  )
+
+    <div className="grid grid-cols-3 gap-4 "> 
+    {anime.data.map(
+      data => {
+       return <AnimeList title={data.title} images={data.images.webp.image_url}/>
+      })}
+      </div>  
+  </div>
+ )
+
 }
+
+export default Home;
