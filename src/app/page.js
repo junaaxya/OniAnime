@@ -11,7 +11,13 @@ const anime = await response.json()
     <div className="grid grid-cols-3 gap-4 "> 
     {anime.data.map(
       data => {
-       return <AnimeList title={data.title} images={data.images.webp.image_url}/>
+        
+       return (
+       <div key={data.mal_id}>
+        <AnimeList title={data.title} images={data.images.webp.image_url}/>
+       </div>
+        
+       ) 
       })}
       </div>  
   </div>
