@@ -1,14 +1,16 @@
+import Link from "next/link"
 import AnimeList from "./components/AnimeList"
 
 const Home = async () => {
-const response = await fetch (`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime`)
+const response = await fetch (`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`)
 const anime = await response.json()
  return (
   <div>
-    <h1 className="">Top Anime</h1>
-
-
-    <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 "> 
+    <div className="p-2 flex justify-between">
+      <h1 className="font-semibold">Top Anime</h1>
+      <Link href="/" className="text-sm font-bold underlinehover:text-zinc-700 transition-all">Lihat Semua</Link>
+    </div>
+    <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 px-2"> 
     {anime.data.map(
       data => {
        return (
